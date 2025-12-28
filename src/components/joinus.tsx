@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, Coffee, Sparkles } from "lucide-react";
+import { ArrowRight, Coffee } from "lucide-react";
 
 const JoinUsFooter: React.FC = () => {
   return (

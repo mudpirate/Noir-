@@ -1,11 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import {
-  ShoppingBag,
-  ArrowUpRight,
-  Instagram,
-  Facebook,
-  Send,
-} from "lucide-react";
+import { ArrowUpRight, Instagram, Facebook, Send } from "lucide-react";
 
 const Hero: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
