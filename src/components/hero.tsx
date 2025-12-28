@@ -3,7 +3,14 @@ import { ArrowUpRight, Instagram, Facebook, Send } from "lucide-react";
 
 const Hero: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const CLOUD_BASE = "https://res.cloudinary.com/dno7felnp/video/upload";
+  const VIDEO_ID = "bg_b6o1ox"; // The name of the file in Cloudinary
 
+  const videoUrl = `${CLOUD_BASE}/f_auto,q_auto,w_1280/${VIDEO_ID}.mp4`;
+
+  // Cloudinary automatically grabs the first frame as a JPG if you change the extension
+  const posterUrl = `${CLOUD_BASE}/f_auto,q_auto,w_1280/${VIDEO_ID}.jpg`;
+  console.log("Poster URL:", posterUrl);
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.play().catch((error) => {
@@ -18,19 +25,15 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 z-0">
         <video
           ref={videoRef}
+          poster={posterUrl} // <--- Instant loading image
           autoPlay
           loop
           muted
           playsInline
-          poster="/black.png"
-          className="w-full h-full object-cover opacity-80"
+          className="w-full h-full object-cover opacity-60"
         >
-          <source src="background.mp4" type="video/mp4" />
-          <img
-            src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=2071&auto=format&fit=crop"
-            alt="Coffee aesthetic"
-            className="w-full h-full object-cover"
-          />
+          {/* We only need one source now because f_auto handles the formats */}
+          <source src={videoUrl} type="video/mp4" />
         </video>
         {/* Gradients for readability */}
         <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
